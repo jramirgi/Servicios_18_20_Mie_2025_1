@@ -111,5 +111,22 @@ namespace Servicios_18_20.Clases
                 //.Where(e => e.Direccion == "") //Filtra los empleados que no tienen dirección
                 .ToList(); //Retorna una lista de empleados
         }
+        public IQueryable ConsultarXUsuario(string Usuario)
+        {
+            return from E in dbSuper.Set<EMPLeado>()
+                   join EC in dbSuper.Set<EMpleadoCArgo>()
+                   on E.Documento equals EC.Documento
+                   join C in dbSuper.Set<CARGo>()
+                   on EC.CodigoCargo equals C.Codigo
+                   join U in dbSuper.Set<Usuario>()
+                   on E.Documento equals U.Documento_Empleado
+                   where U.userName == Usuario
+                   select new
+                   {
+                       idEmpleado = EC.Codigo,
+                       Empleado = E.Nombre + " " + E.PrimerApellido + " " + E.SegundoApellido,
+                       Cargo = C.Nombre
+                   };
+        }
     }
 }
