@@ -11,7 +11,8 @@ namespace Servicios_18_20.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using Newtonsoft.Json;
+
     public partial class DEtalleFActura
     {
         public int Codigo { get; set; }
@@ -19,8 +20,9 @@ namespace Servicios_18_20.Models
         public int CodigoProducto { get; set; }
         public int Cantidad { get; set; }
         public int ValorUnitario { get; set; }
-    
+        [JsonIgnore]
         public virtual PRODucto PRODucto { get; set; }
+        [JsonIgnore]
         public virtual FACTura FACTura { get; set; }
     }
 }

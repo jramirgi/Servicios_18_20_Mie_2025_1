@@ -15,8 +15,9 @@ namespace Servicios_18_20.Clases
         {
             if (factura.Numero == 0)
             {
-                return GrabarEncabezado();
+                int NroFactura = Convert.ToInt32(GrabarEncabezado());
             }
+            detalleFactura.Numero = factura.Numero;
             return GrabarDetalle();
         }
         private string GrabarEncabezado()
@@ -54,7 +55,7 @@ namespace Servicios_18_20.Clases
         {
             try
             {
-                detalleFactura = factura.DEtalleFActuras.FirstOrDefault();
+                //detalleFactura = factura.DEtalleFActuras.FirstOrDefault();
                 dbSuper.DEtalleFActuras.Add(detalleFactura);
                 dbSuper.SaveChanges();
                 return factura.Numero.ToString();

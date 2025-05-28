@@ -24,10 +24,11 @@ namespace Servicios_18_20.Controllers
         }
         [HttpPost]
         [Route("GrabarFactura")]
-        public string GrabarFactura([FromBody] FACTura factura)
+        public string GrabarFactura([FromBody] FacturaDetalle factura)
         {
             clsFactura Factura = new clsFactura();
-            Factura.factura = factura;
+            Factura.factura = factura.factura;
+            Factura.detalleFactura = factura.detalle;
             return Factura.GrabarFactura();
         }
         [HttpDelete]
